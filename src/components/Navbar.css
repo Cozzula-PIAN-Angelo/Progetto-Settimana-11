@@ -1,0 +1,18 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: #191414;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-title {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+}
