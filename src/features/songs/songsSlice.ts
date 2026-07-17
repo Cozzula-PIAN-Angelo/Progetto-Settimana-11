@@ -7,6 +7,9 @@ interface SongsState {
   favorites: number[];
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
+  selected: Song | null;
+  selectedStatus: "idle" | "loading" | "succeeded" | "failed";
+  selectedError: string | null;
 }
 
 export const fetchSongs = createAsyncThunk(
@@ -20,11 +23,25 @@ export const fetchSongs = createAsyncThunk(
   },
 );
 
+export const fetchSongById = createAsyncThunk(
+  "songs/fetchSongById",
+  async (id: number) => {
+    const res = await fetch(
+      `https://striveschool-api.herokuapp.com/api/deezer/track/${id}`,
+    );
+    const data = await res.json();
+    return data as Song;
+  },
+);
+
 const initialState: SongsState = {
   items: [],
   favorites: [],
   status: "idle",
   error: null,
+  selected: null,
+  selectedStatus: "idle",
+  selectedError: null,
 };
 
 const songsSlice = createSlice({
@@ -53,6 +70,18 @@ const songsSlice = createSlice({
       .addCase(fetchSongs.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message ?? "Errore sconosciuto";
+      })
+      .addCase(fetchSongById.pending, (state) => {
+        state.selectedStatus = "loading";
+        state.selectedError = null;
+      })
+      .addCase(fetchSongById.fulfilled, (state, action) => {
+        state.selectedStatus = "succeeded";
+        state.selected = action.payload;
+      })
+      .addCase(fetchSongById.rejected, (state, action) => {
+        state.selectedStatus = "failed";
+        state.selectedError = action.error.message ?? "Errore sconosciuto";
       });
   },
 });

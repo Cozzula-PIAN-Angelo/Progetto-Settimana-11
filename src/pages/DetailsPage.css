@@ -1,0 +1,74 @@
+.details-page {
+  padding: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.details-back {
+  display: inline-block;
+  color: #b3b3b3;
+  text-decoration: none;
+  margin-bottom: 24px;
+}
+
+.details-back:hover {
+  color: #ffffff;
+}
+
+.details-content {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.details-cover {
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.details-info {
+  flex: 1;
+  min-width: 220px;
+}
+
+.details-title {
+  margin: 0 0 8px;
+  font-size: 32px;
+}
+
+.details-artist {
+  color: #1db954;
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+
+.details-meta {
+  color: #b3b3b3;
+  margin: 4px 0;
+}
+
+.details-favorite {
+  margin-top: 20px;
+  background-color: transparent;
+  border: 1px solid #b3b3b3;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 24px;
+  cursor: pointer;
+  font-size: 14px;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.details-favorite:hover {
+  border-color: #ffffff;
+}
+
+.details-favorite.is-favorite {
+  border-color: #1db954;
+  color: #1db954;
+}

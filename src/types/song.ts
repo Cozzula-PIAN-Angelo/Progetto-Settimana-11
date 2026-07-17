@@ -17,4 +17,6 @@ export interface Song {
   preview: string;
   artist: Artist;
   album: Album;
+  release_date?: string;
+  rank?: number;
 }

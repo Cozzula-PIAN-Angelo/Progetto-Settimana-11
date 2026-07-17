@@ -1,3 +1,12 @@
+:root {
+  --spotify-green: #1db954;
+  --spotify-black: #191414;
+  --bg: #121212;
+  --bg-elevated: #181818;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -5,4 +14,6 @@
 body {
   margin: 0;
   font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg);
+  color: var(--text-primary);
 }

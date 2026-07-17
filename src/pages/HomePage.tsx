@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { fetchSongs } from "../features/songs/songsSlice";
 import SongCard from "../components/SongCard";
+import "./HomePage.css";
 
 function HomePage() {
   const dispatch = useAppDispatch();
@@ -12,11 +13,11 @@ function HomePage() {
   }, [dispatch]);
 
   if (status === "loading") {
-    return <p>Caricamento...</p>;
+    return <p className="state-message">Caricamento...</p>;
   }
 
   if (status === "failed") {
-    return <p>Errore: {error}</p>;
+    return <p className="state-message">Errore: {error}</p>;
   }
 
   return (
