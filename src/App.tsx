@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
 import HomePage from "./pages/HomePage";
 import DetailsPage from "./pages/DetailsPage";
 import Footer from "./components/Footer";
@@ -9,12 +10,15 @@ function App() {
   return (
     <div className="app-layout">
       <Navbar />
-      <main className="app-main">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/song/:id" element={<DetailsPage />} />
-        </Routes>
-      </main>
+      <div className="app-body">
+        <Sidebar />
+        <main className="app-main">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/song/:id" element={<DetailsPage />} />
+          </Routes>
+        </main>
+      </div>
       <Footer />
     </div>
   );
