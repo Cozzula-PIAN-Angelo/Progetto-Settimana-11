@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { toggleFavorite } from "../features/songs/songsSlice";
+import { toggleFavorite, setNowPlaying } from "../features/songs/songsSlice";
 import type { Song } from "../types/song";
 import { useNavigate } from "react-router-dom";
 import "./SongCard.css";
@@ -34,18 +34,30 @@ function SongCard({ song }: SongCardProps) {
         <p className="song-card-title">{song.title}</p>
         <p className="song-card-artist">{song.artist.name}</p>
       </div>
-      <button
-        className={`song-card-heart ${isFavorite ? "is-favorite" : ""}`}
-        onClick={(e) => {
-          e.stopPropagation(); // qui funziona davvero: onClick del div non ha un'azione nativa da bypassare
-          dispatch(toggleFavorite(song.id));
-        }}
-        aria-label={
-          isFavorite ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti"
-        }
-      >
-        {isFavorite ? "♥" : "♡"}
-      </button>
+      <div className="song-card-actions">
+        <button
+          className="song-card-play"
+          onClick={(e) => {
+            e.stopPropagation(); // stessa logica del cuore: non deve far scattare anche la navigazione
+            dispatch(setNowPlaying(song));
+          }}
+          aria-label={`Riproduci ${song.title}`}
+        >
+          ▶
+        </button>
+        <button
+          className={`song-card-heart ${isFavorite ? "is-favorite" : ""}`}
+          onClick={(e) => {
+            e.stopPropagation();
+            dispatch(toggleFavorite(song.id));
+          }}
+          aria-label={
+            isFavorite ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti"
+          }
+        >
+          {isFavorite ? "♥" : "♡"}
+        </button>
+      </div>
     </div>
   );
 }

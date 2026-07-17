@@ -10,6 +10,7 @@ interface SongsState {
   selected: Song | null;
   selectedStatus: "idle" | "loading" | "succeeded" | "failed";
   selectedError: string | null;
+  nowPlaying: Song | null;
 }
 
 export const fetchSongs = createAsyncThunk(
@@ -42,6 +43,7 @@ const initialState: SongsState = {
   selected: null,
   selectedStatus: "idle",
   selectedError: null,
+  nowPlaying: null,
 };
 
 const songsSlice = createSlice({
@@ -55,6 +57,9 @@ const songsSlice = createSlice({
       } else {
         state.favorites.push(id);
       }
+    },
+    setNowPlaying: (state, action: PayloadAction<Song>) => {
+      state.nowPlaying = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -86,5 +91,5 @@ const songsSlice = createSlice({
   },
 });
 
-export const { toggleFavorite } = songsSlice.actions;
+export const { toggleFavorite, setNowPlaying } = songsSlice.actions;
 export default songsSlice.reducer;

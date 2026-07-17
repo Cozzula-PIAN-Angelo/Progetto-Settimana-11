@@ -6,4 +6,6 @@
 
 .app-main {
   flex: 1;
+  /* spazio per non far coprire i contenuti dalla barra player fissa in basso */
+  padding-bottom: 80px;
 }
